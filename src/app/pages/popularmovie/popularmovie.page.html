@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" defaultHref="home" >
+    <ion-back-button text=""></ion-back-button>
+  </ion-buttons>
+    <ion-title>popularmovie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of populares">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="item.poster_path"></ion-img>
+      </ion-thumbnail>
+      <ion-label>{{item.original_title}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
