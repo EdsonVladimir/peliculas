@@ -34,4 +34,7 @@ export class GetdataService {
     return this.ejecutarQuery<RespuestaMDB>(query);
 
   }
+  getPeliculaPopularDetalle( id: string ) {
+    return this.ejecutarQuery<PeliculaDetalle>(`/movie/${ id }?a=1`);
+  }
 }

@@ -3,15 +3,15 @@
     <ion-buttons slot="start" defaultHref="home" >
     <ion-back-button text=""></ion-back-button>
   </ion-buttons>
-    <ion-title>popularmovie</ion-title>
+    <ion-title>Popular Movie</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let item of populares">
-      <ion-thumbnail slot="start">
-        <ion-img [src]="item.poster_path"></ion-img>
+      <ion-thumbnail slot="start" (click)="mostraDetalle( item.id )">
+        <ion-img [src]="item.poster_path | imagen"></ion-img>
       </ion-thumbnail>
       <ion-label>{{item.original_title}}</ion-label>
     </ion-item>

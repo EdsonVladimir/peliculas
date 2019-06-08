@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GetdataService } from '../../services/getdata.service';
 import { Pelicula } from '../../interfaces/interfaces';
+import { ModalController } from '@ionic/angular';
+import { DetalleComponent } from '../../components/detalle/detalle.component';
 
 @Component({
   selector: 'app-popularmovie',
@@ -10,7 +12,10 @@ import { Pelicula } from '../../interfaces/interfaces';
 export class PopularmoviePage implements OnInit {
   peliculasRecientes: Pelicula[] = [];
   populares: Pelicula[] = [];
-  constructor(private getdata:GetdataService) {
+  constructor(
+    private getdata:GetdataService,
+    private modalCtrl: ModalController
+    ) {
 
    }
   mostrarPopulares(){
@@ -25,5 +30,14 @@ export class PopularmoviePage implements OnInit {
   ngOnInit() {
     this.mostrarPopulares()
   }
+ async mostraDetalle( id:String ){
 
+    const modal = await this.modalCtrl.create({
+    component:DetalleComponent,
+    componentProps:{
+      id
+    }
+  });
+  modal.present();
+}
 }

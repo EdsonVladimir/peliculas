@@ -1,0 +1,31 @@
+<ion-header>
+
+        <ion-toolbar>
+                <ion-buttons slot="start">
+                        <ion-back-button></ion-back-button>
+                      </ion-buttons>
+          <ion-title>
+            {{pelicula.title}}
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+<ion-content>
+        <ion-card class="poster">
+                <img [src]="pelicula.backdrop_path | imagen" *ngIf="pelicula.backdrop_path">
+                     <ion-card-header>
+                            
+                            <ion-card-title>{{pelicula.original_title}}</ion-card-title>
+                            <ion-card-subtitle> {{pelicula.release_date}}</ion-card-subtitle>
+                          </ion-card-header>                        
+                          <ion-card-content>
+                           {{pelicula.overview}}
+                          </ion-card-content>   
+                          <ion-row align-items-center>
+                                <ion-col size="2" *ngFor="let item of pelicula.production_companies">
+                                        <img [src]="item.logo_path | imagen" *ngIf="item.logo_path">
+                                        <!-- <ion-card-subtitle> {{item.name}}</ion-card-subtitle> -->
+                                </ion-col>
+                           
+                              </ion-row>     
+              </ion-card>
+</ion-content>
