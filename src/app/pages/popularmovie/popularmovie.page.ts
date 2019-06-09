@@ -12,6 +12,7 @@ import { DetalleComponent } from '../../components/detalle/detalle.component';
 export class PopularmoviePage implements OnInit {
   peliculasRecientes: Pelicula[] = [];
   populares: Pelicula[] = [];
+  vermas = 100;
   constructor(
     private getdata:GetdataService,
     private modalCtrl: ModalController

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GetdataService } from '../../services/getdata.service';
+import { ModalController } from '@ionic/angular';
 import { PeliculaDetalle } from '../../interfaces/interfaces';
 
 
@@ -15,7 +16,9 @@ export class DetalleComponent implements OnInit {
 @Input() id;
 
 pelicula: PeliculaDetalle = {};
-  constructor(private getdataservice:GetdataService ) { }
+  constructor(private getdataservice:GetdataService,
+    private modalCtrl: ModalController
+    ) { }
 
   ngOnInit() {
     console.log('ID', this.id);
@@ -25,5 +28,8 @@ pelicula: PeliculaDetalle = {};
        console.log(this.pelicula);
       }
     )}
+    regresar() {
+      this.modalCtrl.dismiss();
+    }
 
 }

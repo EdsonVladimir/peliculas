@@ -11,7 +11,7 @@ const apiKey = environment.apiKey;
 })
 export class GetdataService {
 
-  private popularesPage = 0;
+
   generos: Genre[] = [];
   constructor(private http:HttpClient) { 
     
@@ -20,16 +20,16 @@ export class GetdataService {
   private ejecutarQuery<T>( query: string ) {
 
     query = URL + query;
-    query += `&api_key=${ apiKey }&language=es&include_image_language=es`;
+    query += `&api_key=${ apiKey }&language=en&include_image_language=en?limit=10`;
 
     return this.http.get<T>( query );
   }
 
   getPopulares() {
 
-    this.popularesPage++;
 
-    const query = `/discover/movie?sort_by=popularity.desc&page=${ this.popularesPage }`;
+
+    const query = `/discover/movie?sort_by=popularity.desc&page=1`;
 
     return this.ejecutarQuery<RespuestaMDB>(query);
 

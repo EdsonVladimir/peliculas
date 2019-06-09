@@ -1,19 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" defaultHref="home" >
-    <ion-back-button text=""></ion-back-button>
+    <ion-buttons slot="start" >
+    <ion-back-button text="" defaultHref="home" ></ion-back-button>
   </ion-buttons>
-    <ion-title>Popular Movie</ion-title>
+    <ion-title>Popular Movie Top 10</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of populares">
-      <ion-thumbnail slot="start" (click)="mostraDetalle( item.id )">
-        <ion-img [src]="item.poster_path | imagen"></ion-img>
-      </ion-thumbnail>
-      <ion-label>{{item.original_title}}</ion-label>
-    </ion-item>
-  </ion-list>
+<ion-grid>
+  <ion-card *ngFor="let item of populares">
+  <ion-row>
+    <ion-col size="4" >
+            <img [src]="item.poster_path | imagen" 
+                 *ngIf="item.poster_path">       
+    </ion-col>
+    <ion-col size="7">
+     
+      <ion-row>
+        <ion-col size="12">
+            <ion-label class="itemtext"><h2>{{item.original_title}}</h2></ion-label>
+            <ion-label class="itemtext"><h4><strong>Release : </strong>{{item.release_date}}</h4></ion-label>
+            <ion-label class="itemtext"><h4><strong>Popularity : </strong>{{item.popularity}}</h4></ion-label>
+            <ion-label class="itemtext textodes"><h6>{{ item.overview | slice: 0: vermas }}...</h6></ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col size="7">
+
+          </ion-col>
+          <ion-col size="5">
+              <ion-label  color="primary" (click)="mostraDetalle( item.id )"><h6>Ver mas!</h6></ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+  </ion-row>
+</ion-card>
+</ion-grid>
 </ion-content>
