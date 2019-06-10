@@ -16,16 +16,16 @@ export class DetalleComponent implements OnInit {
 @Input() id;
 
 pelicula: PeliculaDetalle = {};
-  constructor(private getdataservice:GetdataService,
-    private modalCtrl: ModalController
+  constructor(private getdataservice: GetdataService,
+              private modalCtrl: ModalController
     ) { }
 
   ngOnInit() {
     console.log('ID', this.id);
     this.getdataservice.getPeliculaPopularDetalle(this.id).subscribe(
       res=>{
-        this.pelicula=res;
-       console.log(this.pelicula);
+        this.pelicula = res;
+        console.log(this.pelicula);
       }
     )}
     regresar() {

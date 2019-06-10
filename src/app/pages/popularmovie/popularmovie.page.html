@@ -8,8 +8,8 @@
 </ion-header>
 <ion-content>
 <ion-grid>
-  <ion-card *ngFor="let item of populares">
-  <ion-row>
+  <ion-card *ngFor="let item of populares; let i = index;">
+  <ion-row *ngIf=" i < 10">
     <ion-col size="4" >
             <img [src]="item.poster_path | imagen" 
                  *ngIf="item.poster_path">       

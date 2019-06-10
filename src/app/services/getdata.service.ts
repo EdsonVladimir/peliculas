@@ -13,8 +13,7 @@ export class GetdataService {
 
 
   generos: Genre[] = [];
-  constructor(private http:HttpClient) { 
-    
+  constructor( private http:HttpClient ) {
   }
 
   private ejecutarQuery<T>( query: string ) {

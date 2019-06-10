@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { PopularmoviePage } from './popularmovie.page';
 import { PipesModule } from '../../pipes/pipes.module';
+import { TranslateModule } from '@ngx-translate/core';
+
 
 const routes: Routes = [
   {
@@ -21,7 +23,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    PipesModule
+    PipesModule,
+    TranslateModule
   ],
   declarations: [PopularmoviePage]
 })
