@@ -22,12 +22,19 @@ pelicula: PeliculaDetalle = {};
 
   ngOnInit() {
     console.log('ID', this.id);
-    this.getdataservice.getPeliculaPopularDetalle(this.id).subscribe(
-      res=>{
-        this.pelicula = res;
-        console.log(this.pelicula);
-      }
-    )}
+    this.mostrarDatos();
+    }
+
+    mostrarDatos(refresh = false, refresher?){
+      this.getdataservice.getPeliculaPopularDetalle(this.id).subscribe(
+        res=>{
+          this.pelicula = res;
+          if (refresher) {
+            refresher.target.complete();
+          }
+        }
+      )
+    }
     regresar() {
       this.modalCtrl.dismiss();
     }

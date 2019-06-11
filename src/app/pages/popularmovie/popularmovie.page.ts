@@ -1,9 +1,9 @@
+import { Platform } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { GetdataService } from '../../services/getdata.service';
 import { Pelicula } from '../../interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { DetalleComponent } from '../../components/detalle/detalle.component';
-import { DataLocalService } from '../../services/data-local.service';
 
 @Component({
   selector: 'app-popularmovie',
@@ -12,30 +12,32 @@ import { DataLocalService } from '../../services/data-local.service';
 })
 export class PopularmoviePage implements OnInit {
 
-  populares: Pelicula[] = [];
+  populares = [];
 
-  vermas = 100;
+  vermas = 90;
   constructor(
     private getdata: GetdataService,
     private modalCtrl: ModalController,
-    private dataLocal: DataLocalService
+    private plt: Platform
     ) {
-      this.mostrarPopulares();
      }
-  mostrarPopulares(){
-    this.getdata.getPopulares()
+
+     ngOnInit() {
+      this.plt.ready().then(() => {
+        this.mostrarPopulares(true);
+      });
+    }
+  mostrarPopulares(refresh = false, refresher?){
+    this.getdata.getPopulares(refresh)
     .subscribe( resp => {
-      // console.log('Populares', resp.results);
-      this.populares = resp.results;
-      this.guardaStorage();
-    
+      this.populares = resp;
+      if (refresher) {
+        refresher.target.complete();
+      }    
     });
   }
-  ngOnInit() {
 
-  }
  async mostraDetalle( id: string ) {
-
     const modal = await this.modalCtrl.create({
     component:DetalleComponent,
     componentProps:{
@@ -43,8 +45,5 @@ export class PopularmoviePage implements OnInit {
     }
   }) ;
    modal.present();
-  }
-  guardaStorage(){
-    this.dataLocal.guardarPopulares( this.populares );
   }
 }

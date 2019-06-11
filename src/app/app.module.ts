@@ -16,10 +16,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';  //lectura de 
 import { ComponentsModule } from './components/components.module';
 
 import { IonicStorageModule } from '@ionic/storage';
-
+import { Network } from '@ionic-native/network/ngx';
 
 export function createTranslateLoader(http: HttpClient) {
-return new TranslateHttpLoader(http, './assets/traduccion/', '.json' );
+return new TranslateHttpLoader(http, './assets/i18n/', '.json' );
 }
 
 
@@ -40,7 +40,8 @@ return new TranslateHttpLoader(http, './assets/traduccion/', '.json' );
         }
     }),
     ComponentsModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    HttpClientModule
   ],
   providers: [
     StatusBar,
@@ -48,7 +49,8 @@ return new TranslateHttpLoader(http, './assets/traduccion/', '.json' );
     { 
       provide: RouteReuseStrategy, 
       useClass: IonicRouteStrategy 
-    }
+    },
+    Network
   ],
   bootstrap: [AppComponent]
 })

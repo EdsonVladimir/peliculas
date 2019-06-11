@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DetalleComponent } from './detalle/detalle.component';
 import { IonicModule } from '@ionic/angular';
 import { PipesModule } from '../pipes/pipes.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PipesModule } from '../pipes/pipes.module';
   imports: [
     CommonModule,
     IonicModule,
-    PipesModule
+    PipesModule,
+    TranslateModule
   ]
 
 })
